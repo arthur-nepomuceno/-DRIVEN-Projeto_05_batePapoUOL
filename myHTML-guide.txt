@@ -1,0 +1,10 @@
+.top
+    .uol
+    .contacts 
+
+.page-content
+    all the messages here
+
+.bottom
+    .new-message (input)
+    .send-message (onclick)
