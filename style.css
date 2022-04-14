@@ -3,7 +3,7 @@
 body {
     display: flex;
     justify-content: center;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto';
     
 }
 
@@ -15,9 +15,9 @@ img:hover {
     width: 375px;
     height: 80px;
     background-color: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
     top: 0;
     z-index: 1;
 
@@ -30,17 +30,52 @@ img:hover {
 
 .page-content {
     width: 375px;
-    height: 2000px;
+    height: fit-content;
     background: #e5e5e5;;
     position: absolute;
     top: 80px;
+    padding-top: 26px;
+}
+
+.message {
+    width: 100%;
+    height: fit-content;
+    border-radius: 2px;
+    margin-bottom: 4px;
+
+    padding: 8px 0 8px 8px;
+    
+    border: 1px dashed black;
+    box-sizing: border-box;    
+}
+
+.message span {
+    margin-right: 8px;
+    font-style: normal;    
+    font-size: 14px;
+}
+
+.message .time {
+    color: #aaaaaa;
+    font-weight: 400;
+}
+
+.message .from {
+    color: #000000;
+    font-weight: 700;
+}
+
+.message .text {
+    color: #000000;
+    font-weight: 400;
+    word-break: break-all;
 }
 
 .bottom {
     width: 375px;
     height: 80px;
     background-color: #ffffff;
-    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px -4px 6px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
     position: fixed;
     bottom: 0;
