@@ -1,0 +1,48 @@
+=====================================================================================
+================================== CODE NOTES =======================================
+=====================================================================================
+
+1.0 - What do I want my code to do?
+    1.1 - ask for a login name
+    1.2 - once online, I want the page to load the messages from the server
+    1.3 - the user can write a message on the bottom of the screen
+    1.4 - the user can send it's message to the be shown at the screen
+
+1.1 - Ask for a login name
+
+function login(){}
+
+- axios must be added to script part of html
+- code uses a function to login a new user on the server(API)
+- function makes browser displays a prompt
+- function takes it's answer
+- function uses axios.post() to send user information to a server url
+- function uses promise.then() to run a function that will get the messages
+- function uses promise.catch() to run a function if anything goes wrong
+
+1.2 - Loading messages on the screen
+
+function getMessages() {}
+function loadMessages() {}
+
+- code uses a function to get messages from the server(API)
+- function uses axios.get() to get the needed information
+- function uses promise.then() to run a function that will load messages on screen
+- function uses promise.catch() to run a function if anything goes wrong
+
+    - the function to load the messages will directly interact with the html
+    - it will get the information from the server and format it
+
+1.3 - User writes it's message
+
+- user can write a message on an input type html
+- this information must be cought and then sent to the API to loaded on screen
+
+1.4 - Sending message
+
+- code uses a function to send user's message
+- function gets message from input on screen
+- function uses axios.post() to send it to API url
+- function uses promise.then() to run the function that loads messages
+  this way, messages are loaded again and the new message can be included
+- function uses promise.catch() to run a function if anything goes wrong

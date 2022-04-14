@@ -32,7 +32,8 @@
 ==================================== CHAT ===========================================
 =====================================================================================
 
-- [ ]   Ao entrar no site, este deve carregar as mensagens do servidor e exibi-las conforme layout fornecido
+- [ ]   Ao entrar no site, este deve carregar as mensagens do servidor e exibi-las
+        conforme layout fornecido
 
 - [ ]   Existem 3 tipos de mensagem:
         - Mensagens de status (**Entrou** ou **Saiu** da sala): deve ter o fundo cinza
