@@ -30,7 +30,7 @@ img:hover {
 
 .page-content {
     width: 375px;
-    height: fit-content;
+    height: max-content;
     background: #e5e5e5;;
     position: absolute;
     top: 80px;

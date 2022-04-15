@@ -1,5 +1,28 @@
-//const login = prompt("Login:");
-//const loginInfo = {name: login};
+//==================================================================================
+//=============================== ENTERING CHAT ROOM ===============================
+//================================ & STAYING ONLINE ================================
+//==================================================================================
+
+const login = prompt("Login:");
+const loginInfo = {name: login};
+enterChatRoom();
+setInterval(stayOnline, 1 * 3000);
+
+function enterChatRoom(){
+    const enterRequest = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", loginInfo);
+    enterRequest.then(getMessages);
+    enterRequest.catch(codeError);
+}
+
+function stayOnline(){
+    axios.post("https://mock-api.driven.com.br/api/v6/uol/status", loginInfo);
+}
+
+
+//==================================================================================
+//=============================== GETTING MESSAGES =================================
+//============================ & LOADING IT ON SCREEN ==============================
+//==================================================================================
 
 function getMessages(){
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
@@ -20,10 +43,28 @@ function loadMessages(response){
     }
 }
 
+
+//==================================================================================
+//=============================== SENDING MESSAGES =================================
+//==================================================================================
+
+function sendMessages() {
+    let inputText = document.querySelector(".bottom input").value;
+    let message = {from: `${login}`, 
+    to: "Todos", 
+    text: `${inputText}`,
+    type: "message"}
+
+    const request = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message);
+    request.then(loadMessages);
+    request.catch(codeError);
+}
+
+
+//==================================================================================
+//================================== TREATING ERROS ================================
+//==================================================================================
 function codeError(error){
     const statusCode = error.response.status;
     alert(`Error:  ${statusCode}`);
 }
-
-getMessages()
-

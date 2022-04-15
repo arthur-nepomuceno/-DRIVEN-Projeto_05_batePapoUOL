@@ -73,7 +73,7 @@
         ****seu lindo nome
 
 - [ ]   Após inserção do nome, este deve ser enviado para o servidor
-        para cadastraro usuário:
+        para cadastrar  o usuário:
         - Caso o servidor responda com sucesso, o usuário poderá entrar na sala
         - Caso o servidor responda com erro, deve-se pedir para o usuário digitar
         outro nome, pois este já está em uso
