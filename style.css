@@ -5,6 +5,11 @@ body {
     justify-content: center;
     font-family: 'Roboto';
     
+    
+}
+
+strong {
+    font-weight: bold;
 }
 
 img:hover {
@@ -15,7 +20,7 @@ img:hover {
     width: 375px;
     height: 80px;
     background-color: #ffffff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
     box-sizing: border-box;
     position: fixed;
     top: 0;
@@ -31,7 +36,7 @@ img:hover {
 .page-content {
     width: 375px;
     height: max-content;
-    background: #e5e5e5;;
+    background: #F3F3F3;
     position: absolute;
     top: 80px;
     padding-top: 26px;
@@ -45,12 +50,11 @@ img:hover {
 
     padding: 8px 0 8px 8px;
     
-    border: 1px dashed black;
-    box-sizing: border-box;    
+    /*border: 1px dashed black;*/
+    box-sizing: border-box;
 }
 
 .message span {
-    margin-right: 8px;
     font-style: normal;    
     font-size: 14px;
 }
@@ -69,6 +73,18 @@ img:hover {
     color: #000000;
     font-weight: 400;
     word-break: break-all;
+}
+
+.gray {
+    background-color: #DCDCDC;
+}
+
+.pink {
+    background-color: #FFDEDE;
+}
+
+.white {
+    background-color: #FFFFFF;
 }
 
 .bottom {
@@ -91,7 +107,8 @@ img:hover {
 .bottom input {
     width: 290px;
     height: 30px;
-    border-style: none;
+    border: none;
+    outline: none;  
 
     font-family: 'Roboto';
     font-style: italic;

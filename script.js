@@ -30,29 +30,56 @@ function getMessages(){
     promise.catch(codeError);
 }
 
-let lastMessage = "";
 
+let lastMessage;
+let lastPosition;
+let pageContent = document.querySelector(".page-content");
 
-function loadMessages(response){
-    let pageContent = document.querySelector(".page-content");
+function loadMessages(response){    
     for(let i = (response.data.length-30); i < response.data.length; i++) {
-        let message = `<div class="message">
-                            <span class="time">(${response.data[i].time})</span>
-                            <span class="from">${response.data[i].from}</span>
-                            <span class="text">${response.data[i].text}</span>
+        writeMessage(response.data[i]);        
+    }
+
+    pageContent.lastChild.scrollIntoView();
+    
+    lastPosition = response.data.length-1;
+    lastMessage = response.data[lastPosition].text;
+}
+
+function writeMessage(messageInfo) {
+    if (messageInfo.type == "status") { 
+        let message = `<div class="message gray">
+                            <span class="time">(${messageInfo.time})</span>
+                            <span class="from">${messageInfo.from}</span>
+                            <span class="text">${messageInfo.text}</span>
                         </div>`
         pageContent.innerHTML += message;
-        
+
+    } else if (messageInfo.type == "message" && messageInfo.to == "Todos") {
+        let message = `<div class="message white">
+                            <span class="time">(${messageInfo.time})</span>
+                            <span class="from">${messageInfo.from}</span>
+                            <span class="to">para <strong>${messageInfo.to}</strong>:</span>
+                            <span class="text">${messageInfo.text}</span>
+                        </div>`
+        pageContent.innerHTML += message;
+
+    } else if (messageInfo.type == "message" && messageInfo.to != "Todos") {
+        let message = `<div class="message pink">
+                            <span class="time">(${messageInfo.time})</span>
+                            <span class="from">${messageInfo.from}</span>
+                            <span class="to">reservadamente para <strong>${messageInfo.to}</strong>:</span>
+                            <span class="text">${messageInfo.text}</span>
+                        </div>`
+        pageContent.innerHTML += message;
     }
-    pageContent.lastChild.scrollIntoView();
-    let lastPosition = response.data.length-1;
-    lastMessage = response.data[lastPosition].text;
 }
 
 
 
+
 //==================================================================================
-//============================ UPDATING MESSAGES ===============================
+//========================= UPDATING MESSAGES AUTOMATICALLY ========================
 //==================================================================================
 
 function getLastMessage(){
@@ -62,16 +89,11 @@ function getLastMessage(){
 }
 
 function loadLastMessage(response){
-    let lastPosition = response.data.length-1;
+    lastPosition = response.data.length-1;
 
     if (lastMessage != response.data[lastPosition].text) {
-        let pageContent = document.querySelector(".page-content");
-        let message = `<div class="message">
-                            <span class="time">(${response.data[lastPosition].time})</span>
-                            <span class="from">${response.data[lastPosition].from}</span>
-                            <span class="text">${response.data[lastPosition].text}</span>
-                        </div>`
-        pageContent.innerHTML += message;
+        
+        writeMessage(response.data[lastPosition]);
         pageContent.lastChild.scrollIntoView();
         lastMessage = response.data[lastPosition].text;
     }
