@@ -72,7 +72,7 @@
 - [X]   Ao entrar no site, o usuário deverá ser perguntado com um `prompt`
         ****seu lindo nome
 
-- [ ]   Após inserção do nome, este deve ser enviado para o servidor
+- [X]   Após inserção do nome, este deve ser enviado para o servidor
         para cadastrar  o usuário:
         - Caso o servidor responda com sucesso, o usuário poderá entrar na sala
         - Caso o servidor responda com erro, deve-se pedir para o usuário digitar

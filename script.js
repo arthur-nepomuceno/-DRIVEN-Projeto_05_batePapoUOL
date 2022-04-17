@@ -3,13 +3,25 @@
 //================================ & STAYING ONLINE ================================
 //==================================================================================
 
-const login = prompt("Login:");
-const loginInfo = {name: login};
+/*
+ask login
+verify if login is available
+if yes, go on
+if not, asks for new login
+*/
+
+
+let login;
+let loginInfo;
 enterChatRoom();
 setInterval(stayOnline, 1 * 4000);
 
 function enterChatRoom(){
-    const enterRequest = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants", loginInfo);
+    login = prompt("Login:");
+    loginInfo = {name: login};
+
+    const enterRequest = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",
+    loginInfo);
     enterRequest.then(getMessages);
     enterRequest.catch(codeError);
 }
@@ -127,5 +139,10 @@ function sendMessages() {
 //==================================================================================
 function codeError(error){
     const statusCode = error.response.status;
-    alert(`Error:  ${statusCode}`);
+    if (statusCode == 400) {
+        alert(`Erro: ${statusCode}.
+        Nome de usuário já está em uso.
+        Por favor, escolha outro nome e tente novamente.`);
+        enterChatRoom();
+    }
 }
