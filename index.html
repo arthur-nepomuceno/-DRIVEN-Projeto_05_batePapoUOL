@@ -8,44 +8,59 @@
     <link rel="stylesheet" href="style.css">
     <title>Bate Papo UOL by Arthur Nepomuceno</title>
 </head>
-<body>  
+<body>
+    <div class="entrance">
+        <!--here goes login page-->
+        <div class="entrance-img">
+            <img src="./img/uol2.png">
+        </div>
+        <div class="entrance-login">
+            <input type="text" placeholder="Digite seu nome" autofocus>
+        </div>
+        <div class="entrance-button" onclick="enterLogin()">
+            <button>Entrar</button>
+        </div>
+    </div>
     <div class="top">
         <img src="./img/uol.png">
         <img src="./img/contacts.png" onclick="contactList()">
     </div>
     <div class="page-content">
-        <!--<div class="message">
-            <span class="time">time</span>
-            <span class="from">name</span>
-            <span class="text">text</span>
-        </div>-->
+
     </div>
     <div class="bottom">
-        <input type="text" placeholder="Escreva aqui..." autofocus>
+        <div>
+            <input type="text" placeholder="Escreva aqui..." autofocus>
+            <p>Enviando para Todos (publicamente)</p>            
+        </div>        
         <img src="./img/send.png" onclick="sendMessages()">
     </div>
     <div class="cover hidden" onclick="contactList()"></div>
-    <div class="contacts hidden"> 
+    <div class="contacts hidden">
         <div class="contacts-list title">
             <p>Escolha um contato<br>para enviar mensagem:</p>
-        </div>        
+        </div>
         <div class="contacts-list-options">  
             <!--here goes the list of contacts-->         
-        </div>        
+        </div>
+
         <div class="contacts-visibility title">
             <p>Escolha a visibilidade:</p>
         </div>
-        <div class="contacts-visibility option" onclick="check(this)">
-            <img src="./img/padlock-open.png" alt="">
-            <p>Público</p>
-            <img class="check" src="./img/check.png">
-        </div>
-        <div class="contacts-visibility option" onclick="check(this)">
-            <img src="./img/padlock-closed.png" alt="">
-            <p>Reservadamente</p>
-            <img class="check hidden" src="./img/check.png">
-        </div>
-    </div>  
+        <div class="contacts-visibility-options">
+            <div class="contacts-visibility option" onclick="chooseTypeOfMessage(this)">
+                <img src="./img/padlock-open.png" alt="">
+                <p>Público</p>
+                <img class="check selected" src="./img/check.png">
+            </div>
+            <div class="contacts-visibility option" onclick="chooseTypeOfMessage(this)">
+                <img src="./img/padlock-closed.png" alt="">
+                <p>Reservadamente</p>
+                <img class="check" src="./img/check.png">
+            </div>
+        </div>        
+    </div>      
+    
 </body>
 <footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

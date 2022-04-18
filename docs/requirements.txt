@@ -58,7 +58,7 @@
         o elemento será scrollado para que o `elementoQueQueroQueApareca`
         fique visível.
 
-- [ ]   As mensagens com **Reservadamente** só devem ser exibidas se o nome
+- [X]   As mensagens com **Reservadamente** só devem ser exibidas se o nome
         do destinatário for igual ao nome do usuário que está usando o chat
         (ou senão ele poderia ver as mensagens reservadas para outras pessoas)
             - Obs: Fazer essa filtragem no front-end não é uma boa prática,
@@ -97,7 +97,7 @@
             
         **Dica**: experimente usar `window.location.reload()`
             
-- [ ]   Nesse envio, deve ser informado o remetente, o destinatário e
+- [X]   Nesse envio, deve ser informado o remetente, o destinatário e
         se a mensagem é reservada ou não.
 
         - Escolher um destinatário e se a mensagem é reservada ou públicA
@@ -115,19 +115,19 @@
 ============================= PARTICIPANTES ATIVOS ==================================
 =====================================================================================
 
-- [ ]   Ao clicar no ícone superior direito de participantes,
+- [X]   Ao clicar no ícone superior direito de participantes,
         o menu lateral deve abrir por cima do chat conforme layout.
         Um fundo escuro semi-transparente deve ficar por cima do chat.
 
-- [ ]   Ao clicar no fundo escuro, o menu lateral deve ser ocultado novamente.
+- [X]   Ao clicar no fundo escuro, o menu lateral deve ser ocultado novamente.
 
-- [ ]   O site deve obter a lista de participantes assim que entra no chat
+- [X]   O site deve obter a lista de participantes assim que entra no chat
         e deve atualizar a lista a cada 10 segundos.
 
-- [ ]   Ao clicar em uma pessoa ou em público/reservadamente,
+- [X]   Ao clicar em uma pessoa ou em público/reservadamente,
         a opção clicada deve ser marcada com um check e as demais desmarcadas.
 
-- [ ]   Além do check acima, ao trocar esses parâmetros também deve ser alterada
+- [X]   Além do check acima, ao trocar esses parâmetros também deve ser alterada
         a frase que informa o destinatário, que fica embaixo do input de mensagem.
 
 **Para facilitar a correção do projeto** 🙂
@@ -148,7 +148,7 @@ acelerando o feedback.
 ============================== TELA DE ENTRADA ======================================
 =====================================================================================
 
-- [ ]   Em vez de um prompt, faça uma tela inicial, seguindo os layouts:
+- [X]   Em vez de um prompt, faça uma tela inicial, seguindo os layouts:
         https://bootcampra.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fc9f1d322-f267-4b3a-8a25-b3c67eebae9e%2FiPhone_8_-_3.png?table=block&id=cd032672-f1d6-4e07-bcb8-7ace66e10b5a&spaceId=f797e032-5eb2-4c9d-beb7-cd7181e19e47&width=750&userId=&cache=v2
         https://bootcampra.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F661d24f5-1122-499e-970a-591e2c1b8a6f%2FiPhone_8_-_4.png?table=block&id=f87a624b-e381-4c34-be71-cbd14797905b&spaceId=f797e032-5eb2-4c9d-beb7-cd7181e19e47&width=750&userId=&cache=v2
 

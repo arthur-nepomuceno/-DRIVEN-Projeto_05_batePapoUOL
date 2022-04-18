@@ -11,9 +11,71 @@ strong {
     font-weight: bold;
 }
 
-img, .option:hover {
+img, button, .option:hover {
     cursor: pointer;
 }
+
+.entrance {
+    width: 375px;
+    height: 100vh;
+    background-color: white;
+    z-index: 4;
+    position: fixed; 
+
+    box-sizing: border-box;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.05);
+}
+
+.entrance-img {
+    position: absolute;
+    top: 72px;
+    left: 122px;
+}
+
+.entrance-login {
+    width: 250px;
+    height: 54px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid #D7D7D7;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    position: absolute;
+    top: 258px;
+    left: 58px;
+}
+
+.entrance-login input {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #AEAEAE;
+    text-align: center;
+
+    border: none;
+    outline: none;
+}
+
+.entrance-button button {
+    width: 109px;
+    height: 45px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    color: #696969;
+
+    background: #E7E7E7;
+    border-radius: 9px;
+    border: none;
+
+    position: absolute;
+    top: 328px; 
+    left: 134px
+}
+
 
 .top {
     width: 375px;
@@ -48,8 +110,7 @@ img, .option:hover {
     margin-bottom: 4px;
 
     padding: 8px 0 8px 8px;
-    
-    /*border: 1px dashed black;*/
+
     box-sizing: border-box;
 }
 
@@ -119,13 +180,20 @@ img, .option:hover {
     color: #000000;
 }
 
+.bottom p {
+    color: #505050;
+    font-size: 14px;
+}
+
 .cover {
     background-color: #000000;
     opacity: 0.8;
     width: 375px;
     height: 100vw;
     position: fixed;
-    z-index: 2;   
+    z-index: 2;
+    display: flex;
+    justify-content: end;
 }
 
 .hidden {
@@ -136,6 +204,7 @@ img, .option:hover {
     background-color: #ffffff;
     width: 260px;
     height: 100vh;
+    opacity: 1;
     position: fixed;
     z-index: 3;
 }
@@ -143,9 +212,6 @@ img, .option:hover {
 .contacts-list-options {
     max-height: 30vh;
     overflow-y: scroll;
-
-    /*border: 1px dashed black;
-    box-sizing: border-box;*/
 }
 
 .contacts-list-options::-webkit-scrollbar {
@@ -185,4 +251,12 @@ img, .option:hover {
     font-weight: 400;
     font-size: 16px;
     margin-left: 8px;
+}
+
+.check {
+    display: none;
+}
+
+.selected {
+    display: inline;
 }

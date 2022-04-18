@@ -3,24 +3,19 @@
 //================================ & STAYING ONLINE ================================
 //==================================================================================
 
-/*
-ask login
-verify if login is available
-if yes, go on
-if not, asks for new login
-*/
-
-
 let user;
 let userInfo;
-enterChatRoom();
-getContacts();
-setInterval(stayOnline, 1 * 4000);
 
-function enterChatRoom(){
-    user = prompt("Enter user name:");
+function enterLogin() {
+    user = document.querySelector(".entrance-login input").value;
     userInfo = {name: user};
+    enterChatRoom();
+    getContacts();
+    document.querySelector(".entrance").classList.add("hidden");
 
+}
+
+function enterChatRoom(){    
     const ticket = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants",
     userInfo);
     ticket.then(getMessages);
@@ -28,8 +23,12 @@ function enterChatRoom(){
 }
 
 function stayOnline(){
-    axios.post("https://mock-api.driven.com.br/api/v6/uol/status", userInfo);
+    if (userInfo != null) {
+        axios.post("https://mock-api.driven.com.br/api/v6/uol/status", userInfo);
+    }    
 }
+
+setInterval(stayOnline, 1 * 4000);
 
 
 //==================================================================================
@@ -49,25 +48,15 @@ function getMessages(){
     //promise.catch(alert("Erro ao carregar mensagens. Pressione F5 e tente novamente"));
 }
 
-function isStatusMessage(messageInfo) {
-    if (messageInfo.type == "status") {
-        return true;
+function loadMessages(response){ 
+    messagesList = response.data;
+    for(let i = (messagesList.length-30); i < messagesList.length; i++) {
+        writeMessages(messagesList[i]);        
     }
-    return false;
-}
 
-function isPublicMessage(messageInfo) {
-    if (messageInfo.type == "message" && messageInfo.to == "Todos") {
-        return true;
-    }
-    return false;
-}
-
-function isPrivateMessage(messageInfo) {
-    if (messageInfo.type == "message" && messageInfo.to != "Todos" && messageInfo.from == user) {
-        return true;
-    }
-    return false;
+    pageContent.lastChild.scrollIntoView();    
+    lastPosition = messagesList.length-1;
+    lastMessage = messagesList[lastPosition];
 }
 
 function writeMessages(messageInfo) {
@@ -99,24 +88,33 @@ function writeMessages(messageInfo) {
     }
 }
 
-function loadMessages(response){ 
-    messagesList = response.data;
-    for(let i = (messagesList.length-30); i < messagesList.length; i++) {
-        writeMessages(messagesList[i]);        
+function isStatusMessage(messageInfo) {
+    if (messageInfo.type == "status") {
+        return true;
     }
-
-    pageContent.lastChild.scrollIntoView();    
-    lastPosition = messagesList.length-1;
-    lastMessage = messagesList[lastPosition];
+    return false;
 }
 
+function isPublicMessage(messageInfo) {
+    if (messageInfo.type == "message" && typeOfMessage == "Público") {
+        return true;
+    }
+    return false;
+}
 
+function isPrivateMessage(messageInfo) {
+    if (messageInfo.type == "message" && typeOfMessage == "Reservadamente" && messageInfo.from == user) {
+        return true;
+    }
+    return false;
+}
 
+setInterval(getMessages, 1 * 3000);
 
 //==================================================================================
 //========================= UPDATING MESSAGES AUTOMATICALLY ========================
 //==================================================================================
-
+/*
 function getLastMessage(){
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
     promise.then(loadLastMessage);
@@ -125,14 +123,6 @@ function getLastMessage(){
 
 function loadLastMessage(response){
     messagesList = response.data;
-    /*
-    percorrer a lista de mensagens
-    verificar, a cada item da lista, se o texto da mensagem é igual ao texto da última
-    mensagem enviada.
-    se sim, não fazer nada.
-    se não, pegar todas as novas mensagens e carregar elas na tela.
-    */
-
     if (lastMessage.text != messagesList[lastPosition].text) {
         lastMessage = messagesList[lastPosition]
         writeMessages(lastMessage);
@@ -141,25 +131,38 @@ function loadLastMessage(response){
     return;
 }
 
-setInterval(getLastMessage, 1 * 500);
+setInterval(getLastMessage, 1 * 500);*/
 
 
 //==================================================================================
 //=============================== SENDING MESSAGES =================================
 //==================================================================================
+let destinyUser = "Todos";
+let typeOfMessage;
 
 function sendMessages() {
     let input = document.querySelector(".bottom input");
     let message = {from: `${user}`, 
-    to: "Todos", 
+    to: `${destinyUser}`,
     text: `${input.value}`,
     type: "message"}
 
     const request = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", message);
-    request.then(getLastMessage);
+    request.then(getMessages);
     request.catch(sendMessageError);
 
     input.value = "";
+
+}
+
+function sendingTo(){
+    const sendTo = document.querySelector(".bottom p");
+    if (typeOfMessage == "Reservadamente") {
+        sendTo.innerHTML = `Enviando para ${destinyUser} (reservadamente)`;
+    } else if (typeOfMessage == "Público") {
+        sendTo.innerHTML = `Enviando para ${destinyUser} (publicamente)`;
+    }
+    
 }
 
 
@@ -171,7 +174,7 @@ function userError(error){
     alert(`Erro: ${statusCode}.
     Nome de usuário já está em uso.
     Por favor, escolha outro nome e tente novamente.`);
-    enterChatRoom();
+    window.location.reload();
 }
 
 function sendMessageError(error){
@@ -196,8 +199,28 @@ function contactList() {
     contacts.classList.toggle("hidden");
 }
 
-function check(clicked) {
-    clicked.querySelector(".check").classList.toggle("hidden");
+function chooseUser(clicked) {
+    const selectedOption = document.querySelector(".contacts-list-options .selected");
+    if (selectedOption != null) {
+        clicked.querySelector(".check").classList.add("selected");
+        selectedOption.classList.remove("selected");
+    }
+    clicked.querySelector(".check").classList.add("selected");
+
+    destinyUser = clicked.querySelector(".selected").parentNode.querySelector("p").innerHTML;
+    sendingTo()
+}
+
+function chooseTypeOfMessage(clicked) {
+    const selectedOption = document.querySelector(".contacts-visibility-options .selected");
+    if (selectedOption != null) {
+        clicked.querySelector(".check").classList.add("selected");
+        selectedOption.classList.remove("selected");
+    }
+    clicked.querySelector(".check").classList.add("selected");
+    
+    typeOfMessage = clicked.querySelector(".selected").parentNode.querySelector("p").innerHTML;
+    sendingTo();
 }
 
 function getContacts() {
@@ -211,19 +234,19 @@ let contactListNames;
 let contactListContent = document.querySelector(".contacts-list-options");
 
 function loadContacts(response) {   
-    contactListContent.innerHTML = `<div class="contacts-list option" onclick="check(this)">
+    contactListContent.innerHTML = `<div class="contacts-list option" onclick="chooseUser(this)">
                                         <img src="./img/contacts.png">
                                         <p>Todos</p>
-                                        <img class="check hidden" src="./img/check.png">
+                                        <img class="check selected" src="./img/check.png">
                                     </div>`
     
     contactListNames = response.data;
     for (let i = 0; i < contactListNames.length; i++) {
         if (contactListNames[i].name != user) {
-            let contactOption = `<div class="contacts-list option" onclick="check(this)">
+            let contactOption = `<div class="contacts-list option" onclick="chooseUser(this)">
                                     <img src="./img/contacts.png">
                                     <p>${contactListNames[i].name}</p>
-                                    <img class="check hidden" src="./img/check.png">
+                                    <img class="check" src="./img/check.png">
                                 </div>`
 
             contactListContent.innerHTML += contactOption;
@@ -231,4 +254,4 @@ function loadContacts(response) {
     }
 }
 
-setInterval(getContacts, 1 * 4000);
+setInterval(getContacts, 1 * 10000);

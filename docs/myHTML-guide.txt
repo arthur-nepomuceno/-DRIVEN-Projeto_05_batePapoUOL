@@ -1,3 +1,7 @@
+.entrance
+    .entrance-img
+    .entrance-login
+    .entrance-button
 .top
     .uol
     .contacts 
@@ -6,5 +10,13 @@
     all the messages here
 
 .bottom
-    .new-message (input)
-    .send-message (onclick)
+    input
+    send message
+
+.cover
+
+.contacts
+    .contacts-list-title
+    .contacts-list-options
+    .contacts-visibility-title
+    .contacts-visibility-options
