@@ -86,7 +86,7 @@
 ============================= ENVIO DE MENSAGEM =====================================
 =====================================================================================
 
-- [ ]   Ao enviar uma mensagem, esta deve ser enviada para o servidor:
+- [X]   Ao enviar uma mensagem, esta deve ser enviada para o servidor:
 
         - Caso o servidor responda com sucesso, você deve obter novamente
         as mensagens do servidor e atualizar o chat
