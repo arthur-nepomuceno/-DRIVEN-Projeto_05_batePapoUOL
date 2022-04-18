@@ -135,9 +135,21 @@ img, .option:hover {
 .contacts {
     background-color: #ffffff;
     width: 260px;
-    height: 100vw;
+    height: 100vh;
     position: fixed;
     z-index: 3;
+}
+
+.contacts-list-options {
+    max-height: 30vh;
+    overflow-y: scroll;
+
+    /*border: 1px dashed black;
+    box-sizing: border-box;*/
+}
+
+.contacts-list-options::-webkit-scrollbar {
+    display: none;
 }
 
 .title {

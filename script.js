@@ -206,15 +206,29 @@ function getContacts() {
     contacts.catch(codeError)
 }
 
-function loadContacts(response) {
-    let contactList = document.querySelector(".contact-list");
-    for (let i = 0; i < response.data.length; i++) {
-        let contactOption = `<div class="contacts-list option" onclick="check(this)">
-                                <img src="./img/contacts.png">
-                                <p>${response.data[i].name}</p>
-                                <img class="check hidden" src="./img/check.png">
-                            </div>`
 
-        contactList.innerHTML += contactOption;
+let contactListNames;
+let contactListContent = document.querySelector(".contacts-list-options");
+
+function loadContacts(response) {   
+    contactListContent.innerHTML = `<div class="contacts-list option" onclick="check(this)">
+                                        <img src="./img/contacts.png">
+                                        <p>Todos</p>
+                                        <img class="check hidden" src="./img/check.png">
+                                    </div>`
+    
+    contactListNames = response.data;
+    for (let i = 0; i < contactListNames.length; i++) {
+        if (contactListNames[i].name != user) {
+            let contactOption = `<div class="contacts-list option" onclick="check(this)">
+                                    <img src="./img/contacts.png">
+                                    <p>${contactListNames[i].name}</p>
+                                    <img class="check hidden" src="./img/check.png">
+                                </div>`
+
+            contactListContent.innerHTML += contactOption;
+        }        
     }
 }
+
+setInterval(getContacts, 1 * 4000);
