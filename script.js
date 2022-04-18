@@ -111,28 +111,6 @@ function isPrivateMessage(messageInfo) {
 
 setInterval(getMessages, 1 * 3000);
 
-//==================================================================================
-//========================= UPDATING MESSAGES AUTOMATICALLY ========================
-//==================================================================================
-/*
-function getLastMessage(){
-    const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages");
-    promise.then(loadLastMessage);
-    //promise.catch(codeError);
-}
-
-function loadLastMessage(response){
-    messagesList = response.data;
-    if (lastMessage.text != messagesList[lastPosition].text) {
-        lastMessage = messagesList[lastPosition]
-        writeMessages(lastMessage);
-        pageContent.lastChild.scrollIntoView();
-    }
-    return;
-}
-
-setInterval(getLastMessage, 1 * 500);*/
-
 
 //==================================================================================
 //=============================== SENDING MESSAGES =================================
